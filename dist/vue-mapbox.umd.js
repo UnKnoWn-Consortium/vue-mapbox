@@ -1,4 +1,4 @@
-(function(global, factory) {
+(function (global, factory) {
   typeof exports === "object" && typeof module !== "undefined"
     ? factory(
         exports,
@@ -6,11 +6,14 @@
         require("@babel/runtime/helpers/typeof")
       )
     : typeof define === "function" && define.amd
-    ? define([
-        "exports",
-        "@babel/runtime/helpers/defineProperty",
-        "@babel/runtime/helpers/typeof"
-      ], factory)
+    ? define(
+        [
+          "exports",
+          "@babel/runtime/helpers/defineProperty",
+          "@babel/runtime/helpers/typeof"
+        ],
+        factory
+      )
     : ((global =
         typeof globalThis !== "undefined" ? globalThis : global || self),
       factory(
@@ -18,36 +21,36 @@
         global._defineProperty,
         global._typeof
       ));
-})(this, function(exports, _defineProperty, _typeof) {
+})(this, function (exports, _defineProperty, _typeof) {
   "use strict";
 
   function _interopDefaultLegacy(e) {
     return e && typeof e === "object" && "default" in e ? e : { default: e };
   }
 
-  var _defineProperty__default = /*#__PURE__*/ _interopDefaultLegacy(
-    _defineProperty
-  );
+  var _defineProperty__default =
+    /*#__PURE__*/ _interopDefaultLegacy(_defineProperty);
   var _typeof__default = /*#__PURE__*/ _interopDefaultLegacy(_typeof);
 
-  function ownKeys(object, enumerableOnly) {
+  function ownKeys$d(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread(target) {
+  function _objectSpread$d(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys(Object(source), true).forEach(function(key) {
+        ownKeys$d(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -56,7 +59,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys(Object(source)).forEach(function(key) {
+        ownKeys$d(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -83,7 +86,7 @@
             : {};
         this.$emit(
           name,
-          _objectSpread(
+          _objectSpread$d(
             {
               map: this.map,
               component: this
@@ -105,7 +108,7 @@
             : {};
         this.$_emitEvent(
           event.type,
-          _objectSpread(
+          _objectSpread$d(
             {
               mapboxEvent: event
             },
@@ -437,6 +440,10 @@
     crossSourceCollisions: {
       type: Boolean,
       default: true
+    },
+    cooperativeGestures: {
+      type: Boolean,
+      default: false
     }
   };
 
@@ -489,7 +496,7 @@
     if (this.$listeners["update:".concat(prop)]) {
       if (this.propsIsUpdating[prop]) {
         this._watcher.active = false;
-        this.$nextTick(function() {
+        this.$nextTick(function () {
           _this._watcher.active = true;
         });
       } else {
@@ -505,8 +512,8 @@
 
   function makeWatchers() {
     var wrappers = {};
-    Object.entries(watchers).forEach(function(prop) {
-      wrappers[prop[0]] = function(next, prev) {
+    Object.entries(watchers).forEach(function (prop) {
+      wrappers[prop[0]] = function (next, prev) {
         return watcher.call(this, prop[0], prop[1].bind(this), next, prev);
       };
     });
@@ -517,24 +524,25 @@
     watch: makeWatchers()
   };
 
-  function ownKeys$1(object, enumerableOnly) {
+  function ownKeys$c(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$1(target) {
+  function _objectSpread$c(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$1(Object(source), true).forEach(function(key) {
+        ownKeys$c(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -543,7 +551,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$1(Object(source)).forEach(function(key) {
+        ownKeys$c(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -563,7 +571,7 @@
       ) {
         var _this = this;
 
-        return function() {
+        return function () {
           _this.propsIsUpdating[prop] = true;
           var info = typeof data === "function" ? data() : data;
           return _this.$emit("update:".concat(prop), info);
@@ -607,11 +615,11 @@
             }
           }
         ];
-        syncedProps.forEach(function(_ref) {
+        syncedProps.forEach(function (_ref) {
           var events = _ref.events,
             prop = _ref.prop,
             getter = _ref.getter;
-          events.forEach(function(event) {
+          events.forEach(function (event) {
             if (_this2.$listeners["update:".concat(prop)]) {
               _this2.map.on(
                 event,
@@ -624,14 +632,14 @@
       $_loadMap: function $_loadMap() {
         var _this3 = this;
 
-        return this.mapboxPromise.then(function(mapbox) {
+        return this.mapboxPromise.then(function (mapbox) {
           _this3.mapbox = mapbox.default ? mapbox.default : mapbox;
-          return new Promise(function(resolve) {
+          return new Promise(function (resolve) {
             if (_this3.accessToken)
               _this3.mapbox.accessToken = _this3.accessToken;
             var map = new _this3.mapbox.Map(
-              _objectSpread$1(
-                _objectSpread$1({}, _this3._props),
+              _objectSpread$c(
+                _objectSpread$c({}, _this3._props),
                 {},
                 {
                   container: _this3.$refs.container,
@@ -639,7 +647,7 @@
                 }
               )
             );
-            map.on("load", function() {
+            map.on("load", function () {
               return resolve(map);
             });
           });
@@ -654,7 +662,7 @@
       $_bindMapEvents: function $_bindMapEvents(events) {
         var _this4 = this;
 
-        Object.keys(this.$listeners).forEach(function(eventName) {
+        Object.keys(this.$listeners).forEach(function (eventName) {
           if (events.includes(eventName)) {
             _this4.map.on(eventName, _this4.$_emitMapEvent);
           }
@@ -663,31 +671,32 @@
       $_unbindEvents: function $_unbindEvents(events) {
         var _this5 = this;
 
-        events.forEach(function(eventName) {
+        events.forEach(function (eventName) {
           _this5.map.off(eventName, _this5.$_emitMapEvent);
         });
       }
     }
   };
 
-  function ownKeys$2(object, enumerableOnly) {
+  function ownKeys$b(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$2(target) {
+  function _objectSpread$b(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$2(Object(source), true).forEach(function(key) {
+        ownKeys$b(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -696,7 +705,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$2(Object(source)).forEach(function(key) {
+        ownKeys$b(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -917,16 +926,19 @@
   function promisifyMethod(map, methodName) {
     var method = map[methodName];
     var argsCount = method.length;
-    return function() {
+    return function () {
       var handlers = [];
       var eventData = {
         eventId: generateEventId(methodName)
       }; // Creating list of events and event listeners
 
-      var catchers = methodsData[methodName].events.map(function(event, index) {
+      var catchers = methodsData[methodName].events.map(function (
+        event,
+        index
+      ) {
         return {
           event: event,
-          func: new Promise(function(resolve, reject) {
+          func: new Promise(function (resolve, reject) {
             handlers[index] = {
               event: event,
               func: catchEventFabric(
@@ -947,8 +959,8 @@
           // If args[i] is last argument, we assume that this is eventData argument,
           // merge it with eventData passed by user and add in the end of list of arguments
           argsArray.push(
-            _objectSpread$2(
-              _objectSpread$2({}, eventData),
+            _objectSpread$b(
+              _objectSpread$b({}, eventData),
               (i < 0 || arguments.length <= i ? undefined : arguments[i]) || {}
             )
           );
@@ -993,14 +1005,14 @@
               arguments.length <= 3 ? undefined : arguments[3]
             ) === "object"
           ) {
-            options = _objectSpread$2(
-              _objectSpread$2({}, options),
+            options = _objectSpread$b(
+              _objectSpread$b({}, options),
               arguments.length <= 3 ? undefined : arguments[3]
             );
           }
         }
 
-        funcs = catchers.map(function(_ref) {
+        funcs = catchers.map(function (_ref) {
           var event = _ref.event,
             func = _ref.func;
 
@@ -1012,7 +1024,7 @@
           }
         });
       } catch (err) {
-        handlers.forEach(function(_ref2) {
+        handlers.forEach(function (_ref2) {
           var event = _ref2.event,
             func = _ref2.func;
           map.off(event.name, func);
@@ -1020,7 +1032,7 @@
         throw err;
       }
 
-      return Promise.all(funcs).then(function() {
+      return Promise.all(funcs).then(function () {
         return methodsData[methodName].getter(map);
       });
     };
@@ -1029,7 +1041,7 @@
   function promisifyMap(map) {
     var toPromisify = Object.keys(methodsData);
     var actions = {};
-    toPromisify.forEach(function(key) {
+    toPromisify.forEach(function (key) {
       if (toPromisify.indexOf(key) !== -1) {
         actions[key] = promisifyMethod(map, key);
       }
@@ -1048,24 +1060,25 @@
     }
   }
 
-  function ownKeys$3(object, enumerableOnly) {
+  function ownKeys$a(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$3(target) {
+  function _objectSpread$a(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$3(Object(source), true).forEach(function(key) {
+        ownKeys$a(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -1074,7 +1087,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$3(Object(source)).forEach(function(key) {
+        ownKeys$a(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -1091,8 +1104,8 @@
     },
     methods: {
       $_registerAsyncActions: function $_registerAsyncActions(map) {
-        this.actions = _objectSpread$3(
-          _objectSpread$3({}, promisify(map)),
+        this.actions = _objectSpread$a(
+          _objectSpread$a({}, promisify(map)),
           {},
           {
             stop: function stop() {
@@ -1105,7 +1118,7 @@
                 bearing: this.map.getBearing(),
                 center: this.map.getCenter()
               };
-              Object.entries(updatedProps).forEach(function(prop) {
+              Object.entries(updatedProps).forEach(function (prop) {
                 _this.$_updateSyncedPropsFabric(prop[0], prop[1])();
               });
               return Promise.resolve(updatedProps);
@@ -1116,24 +1129,25 @@
     }
   };
 
-  function ownKeys$4(object, enumerableOnly) {
+  function ownKeys$9(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$4(target) {
+  function _objectSpread$9(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$4(Object(source), true).forEach(function(key) {
+        ownKeys$9(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -1142,7 +1156,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$4(Object(source)).forEach(function(key) {
+        ownKeys$9(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -1161,7 +1175,7 @@
       withPrivateMethods,
       withEventsMixin
     ],
-    props: _objectSpread$4(
+    props: _objectSpread$9(
       {
         mapboxGl: {
           type: Object,
@@ -1229,7 +1243,7 @@
     mounted: function mounted() {
       var _this = this;
 
-      this.$_loadMap().then(function(map) {
+      this.$_loadMap().then(function (map) {
         _this.map = map;
 
         if (
@@ -1262,7 +1276,7 @@
     beforeDestroy: function beforeDestroy() {
       var _this2 = this;
 
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         if (_this2.map) _this2.map.remove();
       });
     },
@@ -1284,24 +1298,25 @@
     }
   };
 
-  function ownKeys$5(object, enumerableOnly) {
+  function ownKeys$8(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$5(target) {
+  function _objectSpread$8(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$5(Object(source), true).forEach(function(key) {
+        ownKeys$8(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -1310,7 +1325,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$5(Object(source)).forEach(function(key) {
+        ownKeys$8(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -1331,7 +1346,7 @@
             : {};
         this.$_emitMapEvent(
           event,
-          _objectSpread$5(
+          _objectSpread$8(
             {
               control: this.control
             },
@@ -1347,7 +1362,7 @@
       $_bindSelfEvents: function $_bindSelfEvents(events, emitter) {
         var _this = this;
 
-        Object.keys(this.$listeners).forEach(function(eventName) {
+        Object.keys(this.$listeners).forEach(function (eventName) {
           if (events.includes(eventName)) {
             emitter.on(eventName, _this.$_emitSelfEvent);
           }
@@ -1358,7 +1373,7 @@
 
         if (events.length === 0) return;
         if (!emitter) return;
-        events.forEach(function(eventName) {
+        events.forEach(function (eventName) {
           emitter.off(eventName, _this2.$_emitSelfEvent);
         });
       }
@@ -1531,24 +1546,25 @@
     }
   };
 
-  function ownKeys$6(object, enumerableOnly) {
+  function ownKeys$7(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$6(target) {
+  function _objectSpread$7(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$6(Object(source), true).forEach(function(key) {
+        ownKeys$7(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -1557,7 +1573,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$6(Object(source)).forEach(function(key) {
+        ownKeys$7(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -1633,7 +1649,7 @@
     mounted: function mounted() {
       var _this = this;
 
-      var markerOptions = _objectSpread$6({}, this.$props);
+      var markerOptions = _objectSpread$7({}, this.$props);
 
       if (this.$slots.marker) {
         markerOptions.element = this.$slots.marker[0].elm;
@@ -1642,7 +1658,7 @@
       this.marker = new this.mapbox.Marker(markerOptions);
 
       if (this.$listeners["update:coordinates"]) {
-        this.marker.on("dragend", function(event) {
+        this.marker.on("dragend", function (event) {
           var newCoordinates;
 
           if (_this.coordinates instanceof Array) {
@@ -1684,9 +1700,9 @@
       $_bindMarkerDOMEvents: function $_bindMarkerDOMEvents() {
         var _this2 = this;
 
-        Object.keys(this.$listeners).forEach(function(key) {
+        Object.keys(this.$listeners).forEach(function (key) {
           if (Object.values(markerDOMEvents).includes(key)) {
-            _this2.marker._element.addEventListener(key, function(event) {
+            _this2.marker._element.addEventListener(key, function (event) {
               _this2.$_emitSelfEvent(event);
             });
           }
@@ -1942,24 +1958,25 @@
     "touchcancel"
   ];
 
-  function ownKeys$7(object, enumerableOnly) {
+  function ownKeys$6(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$7(target) {
+  function _objectSpread$6(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$7(Object(source), true).forEach(function(key) {
+        ownKeys$6(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -1968,7 +1985,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$7(Object(source)).forEach(function(key) {
+        ownKeys$6(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -2019,9 +2036,9 @@
   };
   var layerMixin = {
     mixins: [withEventsMixin],
-    props: _objectSpread$7(
-      _objectSpread$7(
-        _objectSpread$7({}, mapboxSourceProps),
+    props: _objectSpread$6(
+      _objectSpread$6(
+        _objectSpread$6({}, mapboxSourceProps),
         mapboxLayerStyleProps
       ),
       componentProps
@@ -2045,14 +2062,14 @@
     },
     created: function created() {
       if (this.layer.minzoom) {
-        this.$watch("layer.minzoom", function(next) {
+        this.$watch("layer.minzoom", function (next) {
           if (this.initial) return;
           this.map.setLayerZoomRange(this.layerId, next, this.layer.maxzoom);
         });
       }
 
       if (this.layer.maxzoom) {
-        this.$watch("layer.maxzoom", function(next) {
+        this.$watch("layer.maxzoom", function (next) {
           if (this.initial) return;
           this.map.setLayerZoomRange(this.layerId, this.layer.minzoom, next);
         });
@@ -2061,7 +2078,7 @@
       if (this.layer.paint) {
         this.$watch(
           "layer.paint",
-          function(next) {
+          function (next) {
             if (this.initial) return;
 
             if (next) {
@@ -2084,7 +2101,7 @@
       if (this.layer.layout) {
         this.$watch(
           "layer.layout",
-          function(next) {
+          function (next) {
             if (this.initial) return;
 
             if (next) {
@@ -2107,7 +2124,7 @@
       if (this.layer.filter) {
         this.$watch(
           "layer.filter",
-          function(next) {
+          function (next) {
             if (this.initial) return;
             this.map.setFilter(this.layerId, next);
           },
@@ -2149,7 +2166,7 @@
       $_bindLayerEvents: function $_bindLayerEvents(events) {
         var _this = this;
 
-        Object.keys(this.$listeners).forEach(function(eventName) {
+        Object.keys(this.$listeners).forEach(function (eventName) {
           if (events.includes(eventName)) {
             _this.map.on(eventName, _this.layerId, _this.$_emitLayerMapEvent);
           }
@@ -2159,7 +2176,7 @@
         var _this2 = this;
 
         if (this.map) {
-          events.forEach(function(eventName) {
+          events.forEach(function (eventName) {
             _this2.map.off(
               eventName,
               _this2.layerId,
@@ -2195,24 +2212,25 @@
     render: function render() {}
   };
 
-  function ownKeys$8(object, enumerableOnly) {
+  function ownKeys$5(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$8(target) {
+  function _objectSpread$5(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$8(Object(source), true).forEach(function(key) {
+        ownKeys$5(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -2221,7 +2239,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$8(Object(source)).forEach(function(key) {
+        ownKeys$5(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -2239,7 +2257,7 @@
       getSourceFeatures: function getSourceFeatures() {
         var _this = this;
 
-        return function(filter) {
+        return function (filter) {
           if (_this.map) {
             return _this.map.querySourceFeatures(_this.sourceId, {
               filter: filter
@@ -2252,7 +2270,7 @@
       getRenderedFeatures: function getRenderedFeatures() {
         var _this2 = this;
 
-        return function(geometry, filter) {
+        return function (geometry, filter) {
           if (_this2.map) {
             return _this2.map.queryRenderedFeatures(geometry, {
               layers: [_this2.layerId],
@@ -2266,19 +2284,19 @@
       getClusterExpansionZoom: function getClusterExpansionZoom() {
         var _this3 = this;
 
-        return function(clusterId) {
-          return new Promise(function(resolve, reject) {
+        return function (clusterId) {
+          return new Promise(function (resolve, reject) {
             if (_this3.mapSource) {
-              _this3.mapSource.getClusterExpansionZoom(clusterId, function(
-                err,
-                zoom
-              ) {
-                if (err) {
-                  return reject(err);
-                }
+              _this3.mapSource.getClusterExpansionZoom(
+                clusterId,
+                function (err, zoom) {
+                  if (err) {
+                    return reject(err);
+                  }
 
-                return resolve(zoom);
-              });
+                  return resolve(zoom);
+                }
+              );
             } else {
               return reject(
                 new Error(
@@ -2292,12 +2310,12 @@
       getClusterChildren: function getClusterChildren() {
         var _this4 = this;
 
-        return function(clusterId) {
-          return new Promise(function(resolve, reject) {
+        return function (clusterId) {
+          return new Promise(function (resolve, reject) {
             var source = _this4.mapSource;
 
             if (source) {
-              source.getClusterChildren(clusterId, function(err, features) {
+              source.getClusterChildren(clusterId, function (err, features) {
                 if (err) {
                   return reject(err);
                 }
@@ -2317,7 +2335,7 @@
       getClusterLeaves: function getClusterLeaves() {
         var _this5 = this;
 
-        return function() {
+        return function () {
           for (
             var _len = arguments.length, args = new Array(_len), _key = 0;
             _key < _len;
@@ -2326,14 +2344,14 @@
             args[_key] = arguments[_key];
           }
 
-          return new Promise(function(resolve, reject) {
+          return new Promise(function (resolve, reject) {
             if (_this5.mapSource) {
               var _this5$mapSource;
 
               (_this5$mapSource = _this5.mapSource).getClusterLeaves.apply(
                 _this5$mapSource,
                 args.concat([
-                  function(err, features) {
+                  function (err, features) {
                     if (err) {
                       return reject(err);
                     }
@@ -2357,7 +2375,7 @@
       if (this.source) {
         this.$watch(
           "source.data",
-          function(next) {
+          function (next) {
             if (this.initial) return;
             this.mapSource.setData(next);
           },
@@ -2375,7 +2393,7 @@
         this.map.on("dataloading", this.$_watchSourceLoading);
 
         if (this.source) {
-          var source = _objectSpread$8(
+          var source = _objectSpread$5(
             {
               type: "geojson"
             },
@@ -2411,7 +2429,7 @@
           }
         }
 
-        var layer = _objectSpread$8(
+        var layer = _objectSpread$5(
           {
             id: this.layerId,
             source: this.sourceId
@@ -2459,24 +2477,25 @@
     }
   };
 
-  function ownKeys$9(object, enumerableOnly) {
+  function ownKeys$4(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$9(target) {
+  function _objectSpread$4(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$9(Object(source), true).forEach(function(key) {
+        ownKeys$4(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -2485,7 +2504,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$9(Object(source)).forEach(function(key) {
+        ownKeys$4(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -2504,7 +2523,7 @@
         if (this.source.coordinates) {
           this.$watch(
             "source.coordinates",
-            function(next) {
+            function (next) {
               if (this.initial) return;
 
               if (next) {
@@ -2520,7 +2539,7 @@
         if (this.source.url) {
           this.$watch(
             "source.url",
-            function(next) {
+            function (next) {
               if (this.initial) return;
 
               if (next) {
@@ -2541,7 +2560,7 @@
     },
     methods: {
       $_deferredMount: function $_deferredMount() {
-        var source = _objectSpread$9(
+        var source = _objectSpread$4(
           {
             type: "image"
           },
@@ -2577,7 +2596,7 @@
           }
         }
 
-        var layer = _objectSpread$9(
+        var layer = _objectSpread$4(
           {
             id: this.layerId,
             source: this.sourceId,
@@ -2594,24 +2613,25 @@
     }
   };
 
-  function ownKeys$a(object, enumerableOnly) {
+  function ownKeys$3(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$a(target) {
+  function _objectSpread$3(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$a(Object(source), true).forEach(function(key) {
+        ownKeys$3(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -2620,7 +2640,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$a(Object(source)).forEach(function(key) {
+        ownKeys$3(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -2661,7 +2681,7 @@
     },
     methods: {
       $_deferredMount: function $_deferredMount() {
-        var source = _objectSpread$a(
+        var source = _objectSpread$3(
           {
             type: "canvas"
           },
@@ -2697,7 +2717,7 @@
           }
         }
 
-        var layer = _objectSpread$a(
+        var layer = _objectSpread$3(
           {
             id: this.layerId,
             source: this.sourceId,
@@ -2715,24 +2735,25 @@
     }
   };
 
-  function ownKeys$b(object, enumerableOnly) {
+  function ownKeys$2(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$b(target) {
+  function _objectSpread$2(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$b(Object(source), true).forEach(function(key) {
+        ownKeys$2(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -2741,7 +2762,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$b(Object(source)).forEach(function(key) {
+        ownKeys$2(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -2762,7 +2783,7 @@
     },
     created: function created() {
       if (this.source && this.source.coordinates) {
-        this.$watch("source.coordinates", function(next) {
+        this.$watch("source.coordinates", function (next) {
           if (this.initial) return;
           this.mapSource.setCoordinates(next);
         });
@@ -2772,7 +2793,7 @@
     },
     methods: {
       $_deferredMount: function $_deferredMount() {
-        var source = _objectSpread$b(
+        var source = _objectSpread$2(
           {
             type: "video"
           },
@@ -2808,7 +2829,7 @@
           }
         }
 
-        var layer = _objectSpread$b(
+        var layer = _objectSpread$2(
           {
             id: this.layerId,
             source: this.sourceId,
@@ -2825,24 +2846,25 @@
     }
   };
 
-  function ownKeys$c(object, enumerableOnly) {
+  function ownKeys$1(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$c(target) {
+  function _objectSpread$1(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$c(Object(source), true).forEach(function(key) {
+        ownKeys$1(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -2851,7 +2873,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$c(Object(source)).forEach(function(key) {
+        ownKeys$1(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -2869,7 +2891,7 @@
       getSourceFeatures: function getSourceFeatures() {
         var _this = this;
 
-        return function(filter) {
+        return function (filter) {
           if (_this.map) {
             return _this.map.querySourceFeatures(_this.sourceId, {
               sourceLayer: _this.layer["source-layer"],
@@ -2883,7 +2905,7 @@
       getRenderedFeatures: function getRenderedFeatures() {
         var _this2 = this;
 
-        return function(geometry, filter) {
+        return function (geometry, filter) {
           if (_this2.map) {
             return _this2.map.queryRenderedFeatures(geometry, {
               layers: [_this2.layerId],
@@ -2906,7 +2928,7 @@
     },
     methods: {
       $_deferredMount: function $_deferredMount() {
-        var source = _objectSpread$c(
+        var source = _objectSpread$1(
           {
             type: "vector"
           },
@@ -2943,7 +2965,7 @@
           }
         }
 
-        var layer = _objectSpread$c(
+        var layer = _objectSpread$1(
           {
             id: this.layerId,
             source: this.sourceId
@@ -2979,24 +3001,25 @@
     }
   };
 
-  function ownKeys$d(object, enumerableOnly) {
+  function ownKeys(object, enumerableOnly) {
     var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+      if (enumerableOnly) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
+      }
       keys.push.apply(keys, symbols);
     }
     return keys;
   }
 
-  function _objectSpread$d(target) {
+  function _objectSpread(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys$d(Object(source), true).forEach(function(key) {
+        ownKeys(Object(source), true).forEach(function (key) {
           _defineProperty__default["default"](target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -3005,7 +3028,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys$d(Object(source)).forEach(function(key) {
+        ownKeys(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -3024,7 +3047,7 @@
     },
     methods: {
       $_deferredMount: function $_deferredMount() {
-        var source = _objectSpread$d(
+        var source = _objectSpread(
           {
             type: "raster"
           },
@@ -3061,7 +3084,7 @@
           }
         }
 
-        var layer = _objectSpread$d(
+        var layer = _objectSpread(
           {
             id: this.layerId,
             type: "raster",

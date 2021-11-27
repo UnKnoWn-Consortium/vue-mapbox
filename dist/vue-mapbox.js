@@ -261,6 +261,10 @@ var options = {
   crossSourceCollisions: {
     type: Boolean,
     default: true
+  },
+  cooperativeGestures: {
+    type: Boolean,
+    default: false
   }
 };
 
@@ -326,7 +330,7 @@ function watcher(prop, callback, next, prev) {
 function makeWatchers() {
   const wrappers = {};
   Object.entries(watchers).forEach(prop => {
-    wrappers[prop[0]] = function(next, prev) {
+    wrappers[prop[0]] = function (next, prev) {
       return watcher.call(this, prop[0], prop[1].bind(this), next, prev);
     };
   });
@@ -1215,14 +1219,14 @@ var layerMixin = {
 
   created() {
     if (this.layer.minzoom) {
-      this.$watch("layer.minzoom", function(next) {
+      this.$watch("layer.minzoom", function (next) {
         if (this.initial) return;
         this.map.setLayerZoomRange(this.layerId, next, this.layer.maxzoom);
       });
     }
 
     if (this.layer.maxzoom) {
-      this.$watch("layer.maxzoom", function(next) {
+      this.$watch("layer.maxzoom", function (next) {
         if (this.initial) return;
         this.map.setLayerZoomRange(this.layerId, this.layer.minzoom, next);
       });
@@ -1231,7 +1235,7 @@ var layerMixin = {
     if (this.layer.paint) {
       this.$watch(
         "layer.paint",
-        function(next) {
+        function (next) {
           if (this.initial) return;
           if (next) {
             for (let prop of Object.keys(next)) {
@@ -1246,7 +1250,7 @@ var layerMixin = {
     if (this.layer.layout) {
       this.$watch(
         "layer.layout",
-        function(next) {
+        function (next) {
           if (this.initial) return;
           if (next) {
             for (let prop of Object.keys(next)) {
@@ -1261,7 +1265,7 @@ var layerMixin = {
     if (this.layer.filter) {
       this.$watch(
         "layer.filter",
-        function(next) {
+        function (next) {
           if (this.initial) return;
           this.map.setFilter(this.layerId, next);
         },
@@ -1429,7 +1433,7 @@ var GeojsonLayer = {
     if (this.source) {
       this.$watch(
         "source.data",
-        function(next) {
+        function (next) {
           if (this.initial) return;
           this.mapSource.setData(next);
         },
@@ -1518,7 +1522,7 @@ var ImageLayer = {
       if (this.source.coordinates) {
         this.$watch(
           "source.coordinates",
-          function(next) {
+          function (next) {
             if (this.initial) return;
             if (next) {
               this.mapSource.setCoordinates(next);
@@ -1531,7 +1535,7 @@ var ImageLayer = {
       if (this.source.url) {
         this.$watch(
           "source.url",
-          function(next) {
+          function (next) {
             if (this.initial) return;
             if (next) {
               this.mapSource.updateImage({
@@ -1683,7 +1687,7 @@ var VideoLayer = {
 
   created() {
     if (this.source && this.source.coordinates) {
-      this.$watch("source.coordinates", function(next) {
+      this.$watch("source.coordinates", function (next) {
         if (this.initial) return;
         this.mapSource.setCoordinates(next);
       });
